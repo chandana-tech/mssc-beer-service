@@ -1,1 +1,1 @@
-# mssc-beer-service
+# beer service microservice project
