@@ -1,0 +1,1 @@
+package chand.springframework.msscbeerservice.web.model;

@@ -14,8 +14,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.UUID;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 @WebMvcTest(BeerController.class)
 class BeerControllerTest {
 
