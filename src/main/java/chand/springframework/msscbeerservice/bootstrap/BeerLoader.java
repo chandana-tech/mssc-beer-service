@@ -17,7 +17,6 @@ public class BeerLoader implements CommandLineRunner {
         this.beerRepository = beerRepository;
     }
 
-
     /**
      * Callback used to run the bean.
      *
