@@ -1,21 +1,20 @@
 package chand.springframework.msscbeerservice.web.controller;
 
 import chand.springframework.msscbeerservice.BeerService;
+import chand.springframework.msscbeerservice.BeerServiceImpl;
 import chand.springframework.msscbeerservice.web.model.BeerDto;
-import chand.springframework.msscbeerservice.web.model.BeerStyleEnum;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.math.BigDecimal;
-import java.time.OffsetDateTime;
 import java.util.UUID;
 
 @RequestMapping("/api/v1/beer")
 @RestController
 public class BeerController {
+
 
     @Autowired
     private BeerService beerService;
@@ -26,13 +25,13 @@ public class BeerController {
     }
 
     @PostMapping
-    public ResponseEntity saveBeer(@RequestBody BeerDto beerDto) {
+    public ResponseEntity saveBeer(@Valid @RequestBody BeerDto beerDto) {
         beerService.saveNewBeer(beerDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping("/{beerId}")
-    public ResponseEntity updateBeer(@PathVariable("beerId") UUID beerId,@RequestBody BeerDto beerDto) {
+    public ResponseEntity updateBeer(@PathVariable("beerId") UUID beerId,@Valid @RequestBody BeerDto beerDto) {
         beerService.updateBeer(beerId, beerDto);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }

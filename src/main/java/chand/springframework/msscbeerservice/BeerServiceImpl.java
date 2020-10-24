@@ -16,7 +16,7 @@ public class BeerServiceImpl implements BeerService {
     @Override
     public BeerDto getBeerById(UUID beerId) {
         return BeerDto.builder()
-                //.id(beerId)
+                .id(beerId)
                 .beerName("Chandana E")
                 .lastModifiedDated(OffsetDateTime.now())
                 .createdDate(OffsetDateTime.now())
@@ -29,7 +29,7 @@ public class BeerServiceImpl implements BeerService {
     @Override
     public BeerDto saveNewBeer(BeerDto beerDto) {
        // log.debug("Saving the beer " + beerDto.getId().toString());
-        return BeerDto.builder()//.id(UUID.randomUUID())
+        return BeerDto.builder().id(UUID.randomUUID())
                 .beerName("Apple Cat")
                 .beerStyle(BeerStyleEnum.LAGER).upc(10L).build();
     }
