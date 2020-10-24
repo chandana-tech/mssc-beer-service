@@ -6,10 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
+@Validated
 @RequestMapping("/api/v1/customer")
 @RestController
 public class CustomerController {
@@ -18,20 +22,20 @@ public class CustomerController {
     private CustomerService customerService;
 
     @GetMapping("/{custId}")
-    public ResponseEntity<CustomerDTO> getCustomerById(@PathVariable("custId") UUID customerId) {
+    public ResponseEntity<CustomerDTO> getCustomerById(@NotNull @PathVariable("custId") UUID customerId) {
         return new ResponseEntity<CustomerDTO>(customerService.getCustomerById(customerId), HttpStatus.OK);
     }
 
     @PostMapping
-    public ResponseEntity createCustomer(@RequestBody CustomerDTO customer) {
+    public ResponseEntity createCustomer(@Valid @RequestBody CustomerDTO customer) {
         customerService.createCustomer(customer);
         HttpHeaders headers = new HttpHeaders();
         headers.add("Location", "/api/v1/customer" + customer.getId().toString());
-        return new ResponseEntity(headers, HttpStatus.OK);
+        return new ResponseEntity(headers, HttpStatus.CREATED);
     }
 
     @PutMapping("/{customerId}")
-    public ResponseEntity updateCustomer(@PathVariable("customerId") UUID customerId, @RequestBody CustomerDTO customer) {
+    public ResponseEntity updateCustomer(@PathVariable("customerId") UUID customerId, @Valid @RequestBody CustomerDTO customer) {
         customerService.updateCustomer(customerId, customer);
 
         return new ResponseEntity(HttpStatus.NO_CONTENT);
@@ -42,4 +46,5 @@ public class CustomerController {
     public void deleteCustomer(@PathVariable("customerId") UUID customerId) {
         customerService.deleteCustomer(customerId);
     }
+
 }

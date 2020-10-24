@@ -20,9 +20,12 @@ import java.util.UUID;
 public class BeerDto {
     @Null
     private UUID id;
+    @Null
     private Integer version;
 
+    @Null
     private OffsetDateTime createdDate;
+    @Null
     private OffsetDateTime lastModifiedDated;
 
     @NotBlank
@@ -31,8 +34,10 @@ public class BeerDto {
     private BeerStyleEnum beerStyle;
 
     @Positive
+    @NotNull
     private Long upc;
 
+    @Positive
     private BigDecimal price;
     private Integer quantityOnHand;
 }
