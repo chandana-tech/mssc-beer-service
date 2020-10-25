@@ -2,6 +2,7 @@ package chand.springframework.msscbeerservice.web.controller;
 
 import chand.springframework.msscbeerservice.CustomerService;
 import chand.springframework.msscbeerservice.web.model.CustomerDTO;
+import lombok.val;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -29,7 +30,7 @@ public class CustomerController {
     @PostMapping
     public ResponseEntity createCustomer(@Valid @RequestBody CustomerDTO customer) {
         customerService.createCustomer(customer);
-        HttpHeaders headers = new HttpHeaders();
+        val headers = new HttpHeaders();
         headers.add("Location", "/api/v1/customer" + customer.getId().toString());
         return new ResponseEntity(headers, HttpStatus.CREATED);
     }

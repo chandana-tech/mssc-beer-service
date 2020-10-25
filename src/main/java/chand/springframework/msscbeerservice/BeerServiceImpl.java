@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
-//@Slf4j
+@Slf4j
 @Service
 public class BeerServiceImpl implements BeerService {
 
@@ -28,7 +28,7 @@ public class BeerServiceImpl implements BeerService {
 
     @Override
     public BeerDto saveNewBeer(BeerDto beerDto) {
-       // log.debug("Saving the beer " + beerDto.getId().toString());
+        log.debug("Saving the beer " + beerDto.getId().toString());
         return BeerDto.builder().id(UUID.randomUUID())
                 .beerName("Apple Cat")
                 .beerStyle(BeerStyleEnum.LAGER).upc(10L).build();
@@ -36,12 +36,12 @@ public class BeerServiceImpl implements BeerService {
 
     @Override
     public void updateBeer(UUID beerId, BeerDto beerDto) {
-       // log.debug("Updating the beer " + beerId.toString());
+        log.debug("Updating the beer " + beerId.toString());
     }
 
     @Override
     public void deleteBeer(UUID beerId) {
-        //log.debug("Deleting a beer..." + beerId.toString());
+        log.debug("Deleting a beer..." + beerId.toString());
     }
 
 
